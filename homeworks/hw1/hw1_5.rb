@@ -1,16 +1,16 @@
-#class Class
-  #def attr_accessor_with_history(attr_name)
-    #attr_name = attr_name.to_s # make sure it's a string
-    #attr_reader attr_name # create the attribute's getter
-    #attr_reader attr_name+"_history" # create bar_history getter
-    #class_eval %Q{
-      #def #{attr_name}=(attr_val)
-        #@#{attr_name}_history ||= [nil]
-        #@#{attr_name}_history << attr_val
-      #end
-    #}
-  #end
-#end
+class Class
+  def attr_accessor_with_history(attr_name)
+    attr_name = attr_name.to_s # make sure it's a string
+    attr_reader attr_name # create the attribute's getter
+    attr_reader attr_name+"_history" # create bar_history getter
+    class_eval %Q{
+      def #{attr_name}=(attr_val)
+        @#{attr_name}_history ||= [nil]
+        @#{attr_name}_history << attr_val
+      end
+    }
+  end
+end
 
 class Numeric
   @@currencies = {
@@ -34,19 +34,15 @@ class Numeric
   end
 end
 
-#puts 5.dollars.in(:euros)
-#puts 5 * 0.013
-#puts 5.rupees
+class String
+  def palindrome?
+    orig = self.gsub(/\W*/,'').downcase
+    orig == orig.reverse
+  end
+end
 
-#class String
-#def palindrome?
-#orig = self.gsub(/\W*/,'').downcase
-#orig == orig.reverse
-#end
-#end
-
-#module Enumerable
-#def palindrome?
-#self.map{ |x| x } == self.map{ |x| x }.reverse if self.respond_to?(:each)
-#end
-#end
+module Enumerable
+  def palindrome?
+    self.map{ |x| x } == self.map{ |x| x }.reverse if self.respond_to?(:each)
+  end
+end

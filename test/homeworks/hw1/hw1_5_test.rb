@@ -38,13 +38,13 @@ end
   #end
 #end
 
-#describe String do
-  #it 'should be able to call palindrome on an instance' do
-    #"palindrome".palindrome?.must_equal false
-    #"Madam, I'm Adam!".palindrome?.must_equal true
-    #"A man, a plan, a canal -- Panama".palindrome?.must_equal true
-  #end
-#end
+describe String do
+  it 'should be able to call palindrome on an instance' do
+    "palindrome".palindrome?.must_equal false
+    "Madam, I'm Adam!".palindrome?.must_equal true
+    "A man, a plan, a canal -- Panama".palindrome?.must_equal true
+  end
+end
 
 #describe Enumerable do
   #it 'should return if an Array is a palindrome' do
